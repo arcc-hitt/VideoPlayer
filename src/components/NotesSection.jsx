@@ -5,12 +5,13 @@ import ActivityFeed from './ActivityFeed'
 import { useDispatch, useSelector } from 'react-redux'
 import { addNote, deleteNote, editNote, setNotes } from '../state/notesSlice'
 
-const NotesSection = () => {
+const NotesSection = ({ onCaptureTimestamp, onTimestampClick }) => {
     const dispatch = useDispatch();
     const notes = useSelector(state => state.notes.notes);
     const videoId = useSelector(state => state.video.videoId);
     const currentTimestamp = useSelector(state => state.video.currentTimestamp);
     const [newNote, setNewNote] = useState('');
+    const [showNoteInput, setShowNoteInput] = useState(false);
 
     useEffect(() => {
         const savedNotes = JSON.parse(localStorage.getItem(videoId)) || [];
@@ -35,6 +36,7 @@ const NotesSection = () => {
         dispatch(addNote(note));
         saveNotesToLocalStorage(updatedNotes);
         setNewNote('');
+        setShowNoteInput(false);
     };
 
     const handleDeleteNote = (id) => {
@@ -51,37 +53,46 @@ const NotesSection = () => {
         saveNotesToLocalStorage(updatedNotes);
     };
 
-    const handleTimestampClick = (timestamp) => {
-        // This function should be linked to the video player to seek the video
-    };
+    const handleClick = () => {
+        setShowNoteInput(true);
+        onCaptureTimestamp();
+    }
 
     return (
         <WidgetWrapper>
+            {/* Header and Add Button */}
             <SectionHeader
                 title={'My notes'}
                 desc={'All your notes at a single place. Click on any note to go to specific timestamp in the video.'}
                 button={true}
+                buttonClick={handleClick}
             />
-            <div className="mt-2">
-                <textarea
-                    className="w-full p-2 border rounded"
-                    rows="4"
-                    placeholder="Write a note..."
-                    value={newNote}
-                    onChange={(e) => setNewNote(e.target.value)}
-                />
-                <button
-                    className="mt-2 p-2 bg-green-500 text-white rounded w-full"
-                    onClick={handleAddNote}
-                >
-                    Add Note
-                </button>
-            </div>
+
+            {/* Add New Note */}
+            {showNoteInput && (
+                <div>
+                    <textarea
+                        className="w-full p-2 border rounded bg-white"
+                        rows="4"
+                        placeholder="Write a note..."
+                        value={newNote}
+                        onChange={(e) => setNewNote(e.target.value)}
+                    />
+                    <button
+                        className="flex justify-center items-center px-2.5 py-1 w-auto h-auto min-h-7 min-w-[98px] border border-[#D0D5DD] bg-white rounded-tl-lg shadow-sm"
+                        onClick={handleAddNote}
+                    >
+                        Add Note
+                    </button>
+                </div>
+            )}
+
+            {/* Display Added Notes */}
             <ActivityFeed
                 notes={notes}
                 onEdit={handleEditNote}
                 onDelete={handleDeleteNote}
-                onTimestampClick={handleTimestampClick}
+                onTimestampClick={onTimestampClick}
             />
         </WidgetWrapper>
     )
