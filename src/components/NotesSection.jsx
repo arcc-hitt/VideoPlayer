@@ -98,12 +98,14 @@ const NotesSection = ({ onCaptureTimestamp, onTimestampClick }) => {
             )}
 
             {/* Display Added Notes */}
-            <ActivityFeed
-                notes={notes}
-                onEdit={handleEditNote}
-                onDelete={handleDeleteNote}
-                onTimestampClick={onTimestampClick}
-            />
+            {notes.length > 0 && (
+                <ActivityFeed
+                    notes={notes}
+                    onEdit={handleEditNote}
+                    onDelete={handleDeleteNote}
+                    onTimestampClick={onTimestampClick}
+                />
+            )}
         </WidgetWrapper>
     )
 }
