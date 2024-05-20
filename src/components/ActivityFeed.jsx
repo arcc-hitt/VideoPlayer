@@ -4,10 +4,10 @@ import Divider from './Divider';
 const Button = ({ text, onClick }) => {
   return (
     <button
-      className='flex justify-center items-center px-2.5 py-1 w-auto h-auto min-h-7 min-w-[98px] border border-[#D0D5DD] bg-white rounded-lg shadow-sm'
+      className='btn-primary'
       onClick={onClick}
     >
-      <span className='text-sm font-medium font-inter text-[#344054]'>
+      <span className='btn-primary-text'>
         {text}
       </span>
     </button>
@@ -51,10 +51,10 @@ const ActivityFeed = ({ notes, onEdit, onDelete, onTimestampClick }) => {
             <Button text="Edit" onClick={() => onEdit(note.id, prompt('Edit note:', note.content))} />
             <Button text="Delete" onClick={() => onDelete(note.id)} />
           </div>
+
+          <Divider />
         </div>
       ))}
-
-      <Divider />
     </div>
   );
 };

@@ -22,7 +22,7 @@ const VideoPlayerWithNotes = () => {
   };
 
   return (
-    <div className='w-full h-screen flex flex-col justify-between gap-8'>
+    <div className='w-full h-screen flex flex-col justify-between gap-8 py-8 px-12'>
       <Header title={'Video Player with Notes'} />
       <VideoPlayer playerRef={playerRef} />
       <NotesSection onCaptureTimestamp={captureTimestamp} onTimestampClick={handleTimestampClick} />

@@ -62,7 +62,7 @@ const NotesSection = ({ onCaptureTimestamp, onTimestampClick }) => {
     };
 
     const handleClick = () => {
-        setShowNoteInput(true);
+        setShowNoteInput(!showNoteInput);
         onCaptureTimestamp();
     }
 
@@ -87,10 +87,12 @@ const NotesSection = ({ onCaptureTimestamp, onTimestampClick }) => {
                         onChange={(e) => setNewNote(e.target.value)}
                     />
                     <button
-                        className="flex justify-center items-center px-2.5 py-1 w-auto h-auto min-h-7 min-w-[98px] border border-[#D0D5DD] bg-white rounded-tl-lg shadow-sm"
+                        className="btn-primary"
                         onClick={handleAddNote}
                     >
-                        Add Note
+                        <span className='btn-primary-text'>
+                            Add Note
+                        </span>
                     </button>
                 </div>
             )}
