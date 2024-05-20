@@ -3,7 +3,7 @@ import Divider from './Divider';
 
 const Button = ({ text, onClick }) => {
   return (
-      <button
+    <button
       className='flex justify-center items-center px-2.5 py-1 w-auto h-auto min-h-7 min-w-[98px] border border-[#D0D5DD] bg-white rounded-lg shadow-sm'
       onClick={onClick}
     >
