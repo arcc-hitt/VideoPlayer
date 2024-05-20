@@ -13,24 +13,30 @@ const VideoPlayer = ({ playerRef }) => {
   };
 
   const videoOpts = {
-    width: '1376',
-    height: '774',
+    width: '100%',
+    height: '100%',
   };
 
   return (
-    <div className='w-full min-w-[1440px] h-auto flex flex-col justify-center items-center gap-8'>
+    <div className='w-full h-auto flex flex-col justify-between items-center gap-8'>
+      {/* Video Player */}
       {videoId ? (
-        <YouTube videoId={videoId} opts={videoOpts} onReady={onPlayerReady} />
+        <div className='w-full max-w-[1376px] lg:h-auto lg:max-h-[774px]'>
+          <YouTube videoId={videoId} opts={videoOpts} onReady={onPlayerReady} className='w-full aspect-video' />
+        </div>
       ) : (
         <span className='text-left font-semibold font-inter text-lg text-[#101828]'>
           Please enter a YouTube video ID
         </span>
       )}
+
+      {/* Video title and description */}
       <SectionHeader
         title={'Video title goes here'}
         desc={'This is the description of the video'}
       />
 
+      {/* Input to enter videoID */}
       <span className='w-full text-left font-normal font-inter text-sm text-[#475467]'>
         Enter a YouTube video ID (Default- M7lc1UVf-VE)
       </span>
@@ -42,7 +48,7 @@ const VideoPlayer = ({ playerRef }) => {
         onChange={(e) => dispatch(setVideoId(e.target.value))}
       />
     </div>
-  )
-}
+  );
+};
 
-export default VideoPlayer
+export default VideoPlayer;

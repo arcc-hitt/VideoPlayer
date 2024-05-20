@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import WidgetWrapper from './WidgetWrapper'
-import SectionHeader from './SectionHeader'
-import ActivityFeed from './ActivityFeed'
-import { useDispatch, useSelector } from 'react-redux'
-import { addNote, deleteNote, editNote, setNotes } from '../state/notesSlice'
+import React, { useEffect, useState } from 'react';
+import WidgetWrapper from './WidgetWrapper';
+import SectionHeader from './SectionHeader';
+import ActivityFeed from './ActivityFeed';
+import { useDispatch, useSelector } from 'react-redux';
+import { addNote, deleteNote, editNote, setNotes } from '../state/notesSlice';
 
 const NotesSection = ({ onCaptureTimestamp, onTimestampClick }) => {
     const dispatch = useDispatch();
@@ -64,10 +64,10 @@ const NotesSection = ({ onCaptureTimestamp, onTimestampClick }) => {
     const handleClick = () => {
         setShowNoteInput(!showNoteInput);
         onCaptureTimestamp();
-    }
+    };
 
     return (
-        <WidgetWrapper>
+        <WidgetWrapper className="py-6 sm:py-8 lg:py-10 px-4 sm:px-6 lg:px-8">
             {/* Header and Add Button */}
             <SectionHeader
                 title={'My notes'}
@@ -78,7 +78,7 @@ const NotesSection = ({ onCaptureTimestamp, onTimestampClick }) => {
 
             {/* Add New Note */}
             {showNoteInput && (
-                <div>
+                <div className="space-y-4">
                     <textarea
                         className="w-full p-2 border rounded bg-white"
                         rows="4"
@@ -90,9 +90,7 @@ const NotesSection = ({ onCaptureTimestamp, onTimestampClick }) => {
                         className="btn-primary"
                         onClick={handleAddNote}
                     >
-                        <span className='btn-primary-text'>
-                            Add Note
-                        </span>
+                        Add Note
                     </button>
                 </div>
             )}
@@ -107,7 +105,7 @@ const NotesSection = ({ onCaptureTimestamp, onTimestampClick }) => {
                 />
             )}
         </WidgetWrapper>
-    )
-}
+    );
+};
 
-export default NotesSection
+export default NotesSection;
