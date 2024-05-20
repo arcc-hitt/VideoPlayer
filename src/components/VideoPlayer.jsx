@@ -30,6 +30,10 @@ const VideoPlayer = ({ playerRef }) => {
         title={'Video title goes here'}
         desc={'This is the description of the video'}
       />
+
+      <span className='w-full text-left font-normal font-inter text-sm text-[#475467]'>
+        Enter a YouTube video ID (Default- M7lc1UVf-VE)
+      </span>
       <input
         type="text"
         placeholder="Enter YouTube Video ID"
