@@ -22,7 +22,7 @@ const ActivityFeed = ({ notes, onEdit, onDelete, onTimestampClick }) => {
 
           {/* Date and Timestamp */}
           <div className='w-full min-w-[1328px] h-auto min-h-[40px] flex flex-col gap-2'>
-            <span className='w-[72px] h-[20px] text-left font-medium font-inter text-sm text-[#344054]'>
+            <span className='w-full min-w-[72px] h-auto min-h-[20px] text-left font-medium font-inter text-sm text-[#344054]'>
               {note.date}
             </span>
 
